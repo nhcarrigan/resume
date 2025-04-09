@@ -1,0 +1,124 @@
+hr {
+    border: 1px solid var(--background);
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+  [class^="subtitle"] {
+    font-size: 1.15rem;
+  }
+  .company {
+    text-decoration: underline;
+  }
+  .type {
+    font-style: italic;
+  }
+  .type::before {
+    content: " - ";
+  }
+  .date,
+  [class^="subdate"] {
+    font-size: 0.8rem;
+  }
+  .info {
+    font-size: 0.8rem;
+  }
+  ul {
+    list-style-type: disc;
+    width: 90%;
+    margin: auto;
+  }
+  li {
+    list-style-position: inside;
+  }
+  @media screen {
+    .card {
+      background: var(--foreground);
+      color: var(--background);
+      width: 80%;
+      max-width: 750px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 10px;
+    }
+  }
+  @media print {
+    :root {
+      font-size: 12px;
+    }
+    * {
+      color: black;
+      font-family: "Times New Roman", serif;
+    }
+    video,
+    footer,
+    hr, #links, #formats, details {
+      display: none !important;
+    }
+    .card {
+      display: grid;
+      grid-template-areas:
+        "title title title title"
+        "company type date date"
+        "subtitle subdate subdate subdate"
+        "subtitle2 subdate2 subdate2 subdate2"
+        "subtitle3 subdate3 subdate3 subdate3"
+        "description description description description";
+      text-align: left;
+    }
+    .date,
+    [class^="subdate"] {
+      font-style: italic;
+      text-align: right;
+    }
+    .title {
+      grid-area: title;
+    }
+    .type {
+      grid-area: type;
+      font-style: normal;
+    }
+    .company {
+      grid-area: company;
+      text-decoration: none;
+    }
+    .date {
+      grid-area: date;
+    }
+    .subtitle1 {
+      grid-area: subtitle;
+    }
+    .subdate1 {
+      grid-area: subdate;
+    }
+    .subtitle2 {
+      grid-area: subtitle2;
+    }
+    .subdate2 {
+      grid-area: subdate2;
+    }
+    .subtitle3 {
+      grid-area: subtitle3;
+    }
+    .subdate3 {
+      grid-area: subdate3;
+    }
+    [class^="subtitle"] {
+      padding-left: 30px;
+      font-size: 0.95rem;
+    }
+    [class^="subtitle"]::before {
+      content: " - ";
+    }
+    .cta {
+      display: none;
+    }
+    .description {
+      grid-area: description;
+      padding-left: 20px;
+      font-size: 0.9rem;
+    }
+
+  }
+  

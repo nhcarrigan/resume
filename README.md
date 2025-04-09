@@ -1,20 +1,10 @@
-# New Repository Template
+# Naomi's Resume
 
-This template contains all of our basic files for a new GitHub repository. There is also a handy workflow that will create an issue on a new repository made from this template, with a checklist for the steps we usually take in setting up a new repository.
-
-If you're starting a Node.JS project with TypeScript, we have a [specific template](https://github.com/naomi-lgbt/nodejs-typescript-template) for that purpose.
-
-## Readme
-
-Delete all of the above text (including this line), and uncomment the below text to use our standard readme template.
-
-<!-- # Project Name
-
-Project Description
+This repository contains Naomi's resume data in YAML format, and the necessary build scripts to generate a public YAML, HTML, and JSON file.
 
 ## Live Version
 
-This page is currently deployed. [View the live website.]
+This page is currently deployed. [View the live website.](https://resume.nhcarrigan.com)
 
 ## Feedback and Bugs
 
@@ -23,6 +13,10 @@ If you have feedback or a bug report, please feel free to open a GitHub issue!
 ## Contributing
 
 If you would like to contribute to the project, you may create a Pull Request containing your proposed changes and we will review it as soon as we are able! Please review our [contributing guidelines](CONTRIBUTING.md) first.
+
+Changes should only be made to the `source.yaml` file. The `site` directory, which holds the generated content, is `.gitignore`d and should not be committed.
+
+Changes must pass the `lint`, `build`, `spelling`, and `test` steps, which check for spelling and properly-structured YAML data as well as scripts following our standard code conventions.
 
 ## Code of Conduct
 
@@ -36,4 +30,4 @@ Copyright held by Naomi Carrigan.
 
 ## Contact
 
-We may be contacted through our [Chat Server](http://chat.nhcarrigan.com) or via email at `contact@nhcarrigan.com`. -->
+We may be contacted through our [Chat Server](http://chat.nhcarrigan.com) or via email at `contact@nhcarrigan.com`.

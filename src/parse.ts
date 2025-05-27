@@ -110,7 +110,7 @@ const heading = `<h1>${yaml.name}</h1>
   Interested in hiring me?
     <a href="https://testimonials.nhcarrigan.com" target="_blank"
       >See what past clients have to say</a
-    >.`;
+    >, or <a href="https://forms.nhcarrigan.com/form/XRlQjeu8CbMrTA-v0IPOxlUPEPitLKXTWg70UUCIORA">submit your own request</a>!`;
 
 const employment = `<section id="employment">
 <h2>Employment</h2>

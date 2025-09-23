@@ -3,10 +3,10 @@
  * @license Naomi's Public License
  * @author Naomi Carrigan
  */
-import { readFile, writeFile, copyFile, stat, mkdir } from "node:fs/promises";
+import { writeFile, copyFile, stat, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 // eslint-disable-next-line import/no-extraneous-dependencies -- Since this is a dev script, there are no production dependencies.
-import { parse, stringify } from "yaml";
+import { parse } from "yaml";
 import type { Resume } from "./interfaces/resume.js";
 
 const htmlBeginning = `<!DOCTYPE html>
@@ -30,9 +30,20 @@ const htmlEnd = `    </main>
   <script src="./dates.js"></script>
 </html>`;
 
+const request = await fetch(
+  "https://data.nhcarrigan.com/resume.yml",
+);
+if (!request.ok) {
+  // eslint-disable-next-line no-console -- error logging.
+  console.error(
+    `Failed to fetch resume.yaml: ${request.status.toString()} ${request.statusText}`,
+  );
+  process.exit(1);
+}
+const result = await request.text();
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- parse does not accept a generic.
 const yaml = (await parse(
-  await readFile(join(process.cwd(), "src", "source.yaml"), "utf8"),
+  result,
 )) as Resume;
 const currentEmployment = yaml.employment.
   filter((item) => {
@@ -104,7 +115,7 @@ const heading = `<h1>${yaml.name}</h1>
     <a href="#publications">Publications</a> |
 </p>
 <p id="formats">
-  Get this resume in <a href="./resume.yaml">YAML</a> or <a href="./resume.json">JSON</a> format. You can also <span style="text-decoration: underline" onclick="window.print();return false;">print</span> the resume (and optionally save as a PDF).
+  Get this resume in <a href="https://data.nhcarrigan.com/resume.yml">YAML</a> or <a href="https://data.nhcarrigan.com/resume.json">JSON</a> format. You can also <span style="text-decoration: underline" onclick="window.print();return false;">print</span> the resume (and optionally save as a PDF).
 </p>
 <p class="cta">
   Interested in hiring me?
@@ -245,16 +256,6 @@ await writeFile(
     + projects
     + publications
     + htmlEnd,
-  "utf8",
-);
-await writeFile(
-  join(process.cwd(), "site", "resume.yaml"),
-  stringify(yaml),
-  "utf8",
-);
-await writeFile(
-  join(process.cwd(), "site", "resume.json"),
-  JSON.stringify(yaml, null, 2),
   "utf8",
 );
 await copyFile(

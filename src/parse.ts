@@ -30,13 +30,39 @@ const htmlEnd = `    </main>
   <script src="./dates.js"></script>
   <script>
     var _cdnStyle = null;
+    var _condensedSections = [];
+
     window.addEventListener("beforeprint", function() {
       _cdnStyle = document.getElementById("nhcarrigan-global-styles");
       if (_cdnStyle) { _cdnStyle.remove(); }
     });
     window.addEventListener("afterprint", function() {
       if (_cdnStyle) { document.head.appendChild(_cdnStyle); _cdnStyle = null; }
+      _condensedSections.forEach(function(el) { el.style.display = ""; });
+      _condensedSections = [];
     });
+
+    function downloadFile(url, filename) {
+      fetch(url)
+        .then(function(r) { return r.blob(); })
+        .then(function(blob) {
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(a.href);
+        });
+    }
+
+    function printCondensed() {
+      ["certifications", "projects", "publications"].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) { el.style.display = "none"; _condensedSections.push(el); }
+      });
+      window.print();
+    }
   </script>
 </html>`;
 
@@ -124,9 +150,12 @@ const heading = `<h1>${yaml.name}</h1>
     <a href="#projects">Projects</a> |
     <a href="#publications">Publications</a> |
 </p>
-<p id="formats">
-  Get this resume in <a href="https://data.nhcarrigan.com/resume.yml">YAML</a> or <a href="https://data.nhcarrigan.com/resume.json">JSON</a> format. You can also <span style="text-decoration: underline" onclick="window.print();return false;">print</span> the resume (and optionally save as a PDF).
-</p>
+<div id="formats">
+  <button onclick="downloadFile('https://data.nhcarrigan.com/resume.yml', 'resume.yml')">Download YAML</button>
+  <button onclick="downloadFile('https://data.nhcarrigan.com/resume.json', 'resume.json')">Download JSON</button>
+  <button onclick="window.print()">Print Resume</button>
+  <button onclick="printCondensed()">Print Condensed Resume</button>
+</div>
 <p class="cta">
   Interested in hiring me?
     <a href="https://testimonials.nhcarrigan.com" target="_blank"

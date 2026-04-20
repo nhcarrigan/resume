@@ -28,6 +28,16 @@ const htmlBeginning = `<!DOCTYPE html>
 const htmlEnd = `    </main>
   </body>
   <script src="./dates.js"></script>
+  <script>
+    var _cdnStyle = null;
+    window.addEventListener("beforeprint", function() {
+      _cdnStyle = document.getElementById("nhcarrigan-global-styles");
+      if (_cdnStyle) { _cdnStyle.remove(); }
+    });
+    window.addEventListener("afterprint", function() {
+      if (_cdnStyle) { document.head.appendChild(_cdnStyle); _cdnStyle = null; }
+    });
+  </script>
 </html>`;
 
 const request = await fetch(

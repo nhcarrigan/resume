@@ -65,17 +65,31 @@ hr {
     }
     video,
     footer,
-    hr, #links, #formats, details {
+    hr, #links, #formats {
       display: none !important;
+    }
+    details {
+      display: block !important;
+    }
+    summary {
+      display: none;
+    }
+    ul {
+      width: 100%;
+      margin: 0;
     }
     .card {
       display: grid;
       grid-template-areas:
         "title title title title"
         "company type date date"
-        "subtitle subdate subdate subdate"
+        "bullets bullets bullets bullets"
+        "subtitle1 subdate1 subdate1 subdate1"
+        "bullets1 bullets1 bullets1 bullets1"
         "subtitle2 subdate2 subdate2 subdate2"
+        "bullets2 bullets2 bullets2 bullets2"
         "subtitle3 subdate3 subdate3 subdate3"
+        "bullets3 bullets3 bullets3 bullets3"
         "description description description description";
       text-align: left;
     }
@@ -99,10 +113,10 @@ hr {
       grid-area: date;
     }
     .subtitle1 {
-      grid-area: subtitle;
+      grid-area: subtitle1;
     }
     .subdate1 {
-      grid-area: subdate;
+      grid-area: subdate1;
     }
     .subtitle2 {
       grid-area: subtitle2;
@@ -117,17 +131,30 @@ hr {
       grid-area: subdate3;
     }
     [class^="subtitle"] {
-      padding-left: 30px;
-      font-size: 0.95rem;
-    }
-    [class^="subtitle"]::before {
-      content: " - ";
+      padding-left: 0;
     }
     .cta {
       display: none;
     }
     .description {
       grid-area: description;
+      padding-left: 20px;
+      font-size: 0.9rem;
+    }
+    .bullets {
+      grid-area: bullets;
+    }
+    .bullets1 {
+      grid-area: bullets1;
+    }
+    .bullets2 {
+      grid-area: bullets2;
+    }
+    .bullets3 {
+      grid-area: bullets3;
+    }
+    .bullets,
+    [class^="bullets"] {
       padding-left: 20px;
       font-size: 0.9rem;
     }

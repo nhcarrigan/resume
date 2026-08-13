@@ -1,4 +1,4 @@
-const dates = document.querySelectorAll(".date:not(#certifications .date):not(#projects .date):not(#publications .date)");const subdates = document.querySelectorAll("[class^='subdate']");
+const dates = document.querySelectorAll(".date:not(#certifications .date):not(#awards .date):not(#projects .date):not(#publications .date)");const subdates = document.querySelectorAll("[class^='subdate']");
 const today = new Date();
 for (const date of [...dates, ...subdates]) {
   const start = new Date("5" + date.textContent.split(" - ")[0]);

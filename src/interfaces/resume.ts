@@ -11,20 +11,21 @@ interface Employment {
   type:             string;
   start_date:       string;
   end_date:         string;
-  description:      string;
+  bullets:          Array<string>;
   prior_positions?: Array<{
     title:      string;
     start_date: string;
     end_date:   string;
+    bullets:    Array<string>;
   }>;
 }
 
 interface Volunteer {
-  title:       string;
-  company:     string;
-  start_date:  string;
-  end_date:    string;
-  description: string;
+  title:      string;
+  company:    string;
+  start_date: string;
+  end_date:   string;
+  bullets:    Array<string>;
 }
 
 interface Education {
@@ -37,6 +38,12 @@ interface Education {
 }
 
 interface Certification {
+  title:  string;
+  issuer: string;
+  date:   string;
+}
+
+interface Award {
   title:  string;
   issuer: string;
   date:   string;
@@ -64,6 +71,7 @@ export interface Resume {
   volunteer:      Array<Volunteer>;
   education:      Array<Education>;
   certifications: Array<Certification>;
+  awards:         Array<Award>;
   projects:       Array<Project>;
   publications:   Array<Publication>;
 }
